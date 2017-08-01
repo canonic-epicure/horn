@@ -7,7 +7,7 @@ import Record.Lens
 
 type Person = [r| {
     name        :: String,
-    birthday    :: {year :: Int, month :: Int, day :: Int}
+    birthday    :: { year :: Int, month :: Int, day :: Int }
 } |]
 
 
