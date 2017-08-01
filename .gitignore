@@ -1,0 +1,5 @@
+/.stack-work/
+/.idea
+/.ideaHaskellLib
+/cabal.config
+/horn.iml
