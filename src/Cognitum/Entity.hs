@@ -3,7 +3,9 @@ module Horn.Entity(
 ) where
 
 
-
+---------
+-- behavior of any relational entity
+---------
 class RelationalEntity a where
     select :: 
     project ::
@@ -14,6 +16,9 @@ class RelationalEntity a where
 
 
 
+---------
+-- some additional behavior of relational table
+---------
 class TableEntity a where
     select :: 
     project ::
