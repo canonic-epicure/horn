@@ -18,6 +18,7 @@ module Horn.Entity(
 class Field name dbType where
     getName :: Text
     getDbType :: Text
+    isNullable :: Bool
 
 
 -- mathematically "pure", description,
@@ -52,11 +53,11 @@ class (FieldSet self => Entity self) where
     -- the only required implementation method
     definition :: self (self-creation descripted in "FieldSet" primitives and serialized as a Haskell source file)
 
-    pure :: Proxy Entity (Null | Empty | Undefined) -> self
+    pure :: Proxy Entity (Maybe | Empty | Undefined) -> self
 
     all :: Proxy Entity -> ResultStream
 
-    new :: Proxy Entity -> Object self
+    new = pure Empty
 
     blackList :: BlackList
     whiteList :: WhiteList
@@ -115,3 +116,29 @@ class Stream a
     first ::
     last ::
     reverse ::
+
+
+------------------------------------------------------------------------------------------------------------------------
+import qualified    Horn.Something as HS
+import qualified    Horn.Operators(.==, .<)
+
+import qualified    YourApp.DbSchema as DB
+
+
+-- Person has many BlogPost
+
+type Person     = HS.Entity "Person"
+
+type Person     = DB.Person
+
+some = do
+    let query =
+        (select DB.Person)
+        `where` (DB.Person.id `.==` (??) HS.&& Person.name `like` 'asd')
+        `orderBy` (HS.desc Person.id)
+        `prefetch` DB.BlogPost
+    in
+        Vector objects <- doQuery query connection
+
+        set ((object `as` Person).name) "newName"
+

@@ -15,7 +15,7 @@
 # resolver:
 #  name: custom-snapshot
 #  location: "./custom-snapshot.yaml"
-resolver: lts-8.24
+resolver: lts-8.4
 
 # User packages to be built.
 # Various formats can be used as shown in the example below.
@@ -37,11 +37,17 @@ resolver: lts-8.24
 # will not be run. This is useful for tweaking upstream packages.
 packages:
 - .
+- ../beam/beam-core
+- ../beam/beam-migrate
+- ../beam/beam-postgres
+
 # Dependency packages to be pulled from upstream that are not in the resolver
 # (e.g., acme-missiles-0.3)
 extra-deps:
 - record-0.3.2
 - template-haskell-compat-v0208-0.1.1
+- selda-sqlite-0.1.5.1
+- compdata-0.1
 
 # Override default flag values for local packages and extra-deps
 flags: {}

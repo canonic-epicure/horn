@@ -1,8 +1,10 @@
 module Main where
 
-import Horn
+import Schema
+
+import Database.Beam
 
 main :: IO ()
-main = someFunc
+main = undefined
 
-
+-- query = all_ (_table2 db)
